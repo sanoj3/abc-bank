@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Edit Profile
+{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh; background:#f5f7fa;">
+
+    <div class="card shadow-lg border-0 p-4" style="width: 420px; border-radius: 15px;">
+
+        <!-- Header -->
+        <div class="text-center mb-3">
+            <h4 class="mb-1">✏️ Edit Profile</h4>
+            <small class="text-muted">Update your personal details</small>
+        </div>
+
+        <!-- Form -->
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- First Name -->
+            <div class="mb-3">
+                <label class="form-label">First Name : </label>
+                <input type="text" name="first_name"
+                       value="{{ customer.first_name }}"
+                       class="form-control shadow-sm"
+                       placeholder="Enter first name">
+            </div>
+
+            <!-- Last Name -->
+            <div class="mb-3">
+                <label class="form-label">Last Name : </label>
+                <input type="text" name="last_name"
+                       value="{{ customer.last_name }}"
+                       class="form-control shadow-sm"
+                       placeholder="Enter last name">
+            </div>
+
+            <!-- Phone -->
+            <div class="mb-3">
+                <label class="form-label">Phone Number : </label>
+                <input type="text" name="phone_number"
+                       value="{{ customer.phone_number }}"
+                       class="form-control shadow-sm"
+                       placeholder="Enter phone number">
+            </div>
+
+            <!-- Profile Image -->
+            <div class="mb-3">
+                <label class="form-label">New Profile Picture : </label>
+
+                <input type="file" name="profile_pic"
+                       class="form-control shadow-sm">
+            </div>
+
+            <!-- Save Button -->
+            <button class="btn btn-primary w-100 shadow-sm">
+                💾 Save Changes
+            </button>
+
+            <!-- Back Button -->
+            <a href="{% url 'profile' %}"
+               class="btn btn-outline-secondary w-100 mt-2">
+                ⬅ Back to Profile
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

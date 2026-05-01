@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Deposit
+{% endblock %}
+
+{% block content %}
+
+<body class="bg-light">
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+
+    <div class="card shadow p-4 rounded-4" style="width: 400px;">
+        
+        <h3 class="text-center mb-3">💰 Deposit Money</h3>
+
+        <!-- ✅ Balance -->
+        <div class="mb-3 text-center">
+            <small class="text-muted">Current Balance</small>
+            <h4 class="fw-bold text-success">₹ {{ customer.balance }}</h4>
+        </div>
+
+        <!-- ✅ Form -->
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label class="form-label">Enter Amount</label>
+                <input 
+                    type="number" 
+                    name="amount" 
+                    class="form-control" 
+                    placeholder="Enter amount"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">
+                Deposit
+            </button>
+        </form>
+
+        <!-- 🔗 Navigation -->
+        <div class="text-center mt-3">
+            <a href="{% url 'transaction' %}" class="text-decoration-none">
+                View Transactions
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Profile
+{% endblock %}
+
+{% block content %}
+
+<br>
+<div class="d-flex justify-content-center align-items-center"
+     style="min-height: 100vh; background:#f5f7fa;">
+
+    <div class="card shadow-lg border-0"
+         style="width: 420px; border-radius: 15px; overflow:hidden;">
+
+        <!-- Header -->
+        <div class="text-center p-4 bg-dark text-white">
+
+            <!-- Profile Image -->
+            <div class="mx-auto mb-2">
+
+                {% if customer.profile_pic %}
+                    <img src="{{ customer.profile_pic.url }}"
+                         class="rounded-circle border border-3 border-white shadow"
+                         style="width: 90px; height: 90px; object-fit: cover;">
+                {% else %}
+                    <div class="rounded-circle bg-white text-dark d-flex justify-content-center align-items-center mx-auto shadow"
+                         style="width: 90px; height: 90px; font-size: 30px; font-weight: bold;">
+                        {{ user.username|slice:":1"|upper }}
+                    </div>
+                {% endif %}
+
+            </div>
+
+            <h5 class="mb-0">
+                {{ customer.first_name }} {{ customer.last_name }}
+            </h5>
+
+            <small class="text-light opacity-75">
+                {{ user.email }}
+            </small>
+
+        </div>
+
+        <!-- Body -->
+        <div class="p-4">
+
+            <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted">First Name : </span>
+                <strong>{{ customer.first_name }}</strong>
+            </div>
+            <hr>
+
+            <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted">Last Name : </span>
+                <strong>{{ customer.last_name }}</strong>
+            </div>
+            <hr>
+
+            <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted">Account Number : </span>
+                <strong>{{ customer.account_number }}</strong>
+            </div>
+            <hr>
+
+            <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted">Phone : </span>
+                <strong>{{ customer.phone_number }}</strong>
+            </div>
+            <hr>
+
+            <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted">Aadhaar Number : </span>
+                <strong>****{{ customer.aadhar_number|slice:"-4:" }}</strong>
+            </div>
+            <hr>
+
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <span class="text-muted">Balance : </span>
+                <h5 class="text-success mb-0 fw-bold">
+                    ₹ {{ customer.balance }}
+                </h5>
+            </div>
+
+        </div>
+
+        <!-- Buttons -->
+        <div class="p-3">
+
+            <a href="{% url 'edit_profile' %}"
+               class="btn btn-outline-primary w-100 mb-2 shadow-sm">
+                ✏️ Edit Profile
+            </a>
+
+            <a href="{% url 'logout' %}"
+               class="btn btn-danger w-100 shadow-sm">
+                🚪 Logout
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

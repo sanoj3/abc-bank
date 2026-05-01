@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Transaction Details
+{% endblock %}
+
+{% block content %}
+<body class="bg-light">
+
+<div class="container py-5">
+
+    <div class="card shadow rounded-4 p-4">
+
+        <h3 class="text-center mb-4">📜 Transaction History</h3>
+
+        <!-- ✅ Table -->
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle text-center">
+                
+                <thead class="table-dark">
+                    <tr>
+                        <th>Type</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Balance</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for t in transactions %}
+                    <tr>
+                        <!-- Type -->
+                        <td>
+                            {% if t.transaction_type == 'deposit' %}
+                                <span class="badge bg-success">Deposit</span>
+                            {% else %}
+                                <span class="badge bg-danger">Withdraw</span>
+                            {% endif %}
+                        </td>
+
+                        <!-- Amount -->
+                        <td class="{% if t.transaction_type == 'deposit' %}text-success{% else %}text-danger{% endif %}">
+                            ₹ {{ t.amount }}
+                        </td>
+
+                        <!-- Date -->
+                        <td>
+                            {{ t.created_at|date:"d M Y, h:i A" }}
+                        </td>
+
+                        <td>{{ t.description }}</td>
+
+                        <!-- Balance -->
+                        <td class="fw-bold">
+                            ₹ {{ t.after_balance }}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">No transactions found</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+
+        <!-- 🔗 Navigation -->
+        <div class="text-center mt-4">
+            <a href="{% url 'deposit' %}" class="btn btn-success me-2">Deposit</a>
+            <a href="{% url 'withdraw' %}" class="btn btn-danger me-2">Withdraw</a>
+            <a href="{% url 'home' %}" class="btn btn-secondary">Home</a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+{% endblock %}

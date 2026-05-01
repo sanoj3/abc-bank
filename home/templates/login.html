@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center align-items-center" style="height: 80vh;">
+
+    <div class="card shadow p-4" style="width: 350px;">
+        <h3 class="text-center mb-3">Login</h3>
+
+        {% if error %}
+            <div class="alert alert-danger">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label>Email</label>
+                <input type="email" name="email" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label>Password</label>
+                <input type="password" name="password" class="form-control" minlength="8" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">
+                Login
+            </button>
+        </form>
+
+        <!-- ✅ Signup link -->
+        <div class="text-center mt-3">
+            <small>Don't have an account?</small><br>
+            <a href="{% url 'register' %}" class="btn btn-outline-success btn-sm mt-2">
+                Create Account
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h3 class="text-center mb-4">
+        Welcome {{ customer.first_name }} {{ customer.last_name }}
+    </h3>
+
+    <hr>
+
+    <div class="row g-4">
+
+        <!-- Balance -->
+        <div class="col-md-4 col-lg-3">
+            <div class="card text-center shadow">
+                <div class="card-body">
+                    <h5>Balance</h5>
+
+                    <h4 id="balance" class="text-primary d-none">
+                        ₹ {{ customer.balance }}
+                    </h4>
+
+                    <button onclick="toggleBalance()" class="btn btn-primary" id="btn">
+                        Show Balance
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile -->
+        <div class="col-md-4 col-lg-3">
+            <div class="card text-center shadow">
+                <div class="card-body">
+                    <h5>Profile</h5>
+                    <a href="{% url 'profile' %}" class="btn btn-info">Profile</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Withdraw -->
+        <div class="col-md-4 col-lg-3">
+            <div class="card text-center shadow">
+                <div class="card-body">
+                    <h5>Withdraw</h5>
+                    <a href="{% url 'withdraw' %}" class="btn btn-danger">Withdraw</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Deposit -->
+        <div class="col-md-4 col-lg-3">
+            <div class="card text-center shadow">
+                <div class="card-body">
+                    <h5>Deposit</h5>
+                    <a href="{% url 'deposit' %}" class="btn btn-success">Deposit</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transaction -->
+        <div class="col-md-4 col-lg-3">
+            <div class="card text-center shadow">
+                <div class="card-body">
+                    <h5>Transactions</h5>
+                    <a href="{% url 'transaction' %}" class="btn btn-info">History</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transfer -->
+        <div class="col-md-4 col-lg-3">
+            <div class="card text-center shadow">
+                <div class="card-body">
+                    <h5>Transfer Money</h5>
+                    <a href="{% url 'transfer' %}" class="btn btn-warning">Sent Money</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+function toggleBalance() {
+    let bal = document.getElementById("balance");
+    let btn = document.getElementById("btn");
+
+    if (bal.classList.contains("d-none")) {
+        bal.classList.remove("d-none");
+        btn.innerText = "Hide Balance";
+    } else {
+        bal.classList.add("d-none");
+        btn.innerText = "Show Balance";
+    }
+}
+</script>
+
+{% endblock %}
