@@ -3,7 +3,7 @@
 ##  Project Overview
 ABC Bank is a full-featured banking web application built using Django. It allows users to securely manage accounts, perform transactions, and view financial activities through a user-friendly interface.
 
----
+
 
 ##  Features
 
@@ -30,9 +30,9 @@ ABC Bank is a full-featured banking web application built using Django. It allow
 
 ##  Tech Stack
 
-- **Backend:** Django (Python)
-- **Frontend:** HTML, CSS, Bootstrap
-- **Database:** SQLite (Development)
-- **Version Control:** Git & GitHub
+- Backend: Django (Python)
+- Frontend: HTML, CSS, Bootstrap
+- Database: SQLite (Development)
+- Version Control: Git & GitHub
 
 
